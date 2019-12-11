@@ -19,6 +19,8 @@ import java.util.stream.IntStream;
 @RequestMapping("posts")
 public class PostController {
 
+    private static final int SIZE = 6;
+
     @Autowired
     private PostService postService;
 
@@ -27,9 +29,9 @@ public class PostController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("post");
 
-        modelAndView.addObject("list", postService.getAll(page, 10));
+        modelAndView.addObject("list", postService.getAll(page, SIZE));
         modelAndView.addObject("totalPages",
-                IntStream.rangeClosed(1, postService.getAll(page, 10).getTotalPages()).boxed().collect(Collectors.toList()));
+                IntStream.rangeClosed(1, postService.getAll(page, SIZE).getTotalPages()).boxed().collect(Collectors.toList()));
         modelAndView.addObject("post", new Post());
         return modelAndView;
     }
@@ -41,9 +43,9 @@ public class PostController {
         post.setId(UUID.randomUUID().toString());
         postService.save(post);
 
-        modelAndView.addObject("list", postService.getAll(0, 10));
+        modelAndView.addObject("list", postService.getAll(0, SIZE));
         modelAndView.addObject("totalPages",
-                IntStream.rangeClosed(1, postService.getAll(0, 10).getTotalPages()).boxed().collect(Collectors.toList()));
+                IntStream.rangeClosed(1, postService.getAll(0, SIZE).getTotalPages()).boxed().collect(Collectors.toList()));
         return modelAndView;
     }
 
@@ -54,9 +56,9 @@ public class PostController {
         postService.delete(id);
 
         modelAndView.addObject("post", new Post());
-        modelAndView.addObject("list", postService.getAll(0, 10));
+        modelAndView.addObject("list", postService.getAll(0, SIZE));
         modelAndView.addObject("totalPages",
-                IntStream.rangeClosed(1, postService.getAll(0, 10).getTotalPages()).boxed().collect(Collectors.toList()));
+                IntStream.rangeClosed(1, postService.getAll(0, SIZE).getTotalPages()).boxed().collect(Collectors.toList()));
         return modelAndView;
     }
 }

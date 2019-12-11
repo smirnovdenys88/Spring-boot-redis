@@ -29,16 +29,12 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th scope="col">Id</th>
-                    <th scope="col">Subject</th>
-                    <th scope="col">Text</th>
+                    <th scope="col">Hash</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="item : ${list}">
+                <tr th:each="item, iterStat : ${list}" th:class="${iterStat.odd}? 'odd'">
                     <th th:text="${item.id}"></th>
-                    <th th:text="${item.subject}"></th>
-                    <th th:text="${item.text}"></th>
                     <th><a th:href="@{/posts/post/delete/{id}(id=${item.id})}" class="btn btn-danger">Delete</a></th>
                 </tr>
                 </tbody>
