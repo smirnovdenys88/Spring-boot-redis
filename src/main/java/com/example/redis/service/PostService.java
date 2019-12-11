@@ -1,13 +1,14 @@
 package com.example.redis.service;
 
 import com.example.redis.domain.Post;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
 public interface PostService {
     Post getById(String id);
 
-    List<Post> getAll();
+    Page<Post> getAll(int page, int size);
 
     Post save(Post post);
 

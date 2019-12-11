@@ -3,7 +3,7 @@ package com.example.redis.domain;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
 
-@RedisHash("post")
+//@RedisHash("post")
 public class Post {
     @Id
     private String id;

@@ -18,10 +18,10 @@
 <div class="container">
     <div class="row">
         <div class="col-3">
-            <form th:action="@{/post/save}" th:object="${post}" method="post">
-                <input type="text" th:field="*{id}" placeholder="Id" class="form-control" />
-                <input type="text" th:field="*{subject}" placeholder="Subject" class="form-control" />
-                <input type="text" th:field="*{text}" placeholder="text" class="form-control" />
+            <form th:action="@{/posts/post/save}" th:object="${post}" method="post">
+                <input type="text" th:field="*{id}" placeholder="Id" class="form-control"/>
+                <input type="text" th:field="*{subject}" placeholder="Subject" class="form-control"/>
+                <input type="text" th:field="*{text}" placeholder="text" class="form-control"/>
                 <button type="submit" class="btn btn-success">Add post</button>
             </form>
         </div>
@@ -39,10 +39,24 @@
                     <th th:text="${item.id}"></th>
                     <th th:text="${item.subject}"></th>
                     <th th:text="${item.text}"></th>
-                    <th><a th:href="@{/post/delete/{id}(id=${item.id})}" class="btn btn-danger">Delete</a></th>
+                    <th><a th:href="@{/posts/post/delete/{id}(id=${item.id})}" class="btn btn-danger">Delete</a></th>
                 </tr>
                 </tbody>
             </table>
+            <nav aria-label="...">
+                <ul class="pagination">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                    </li>
+                    <li class="page-item" th:each="page : ${totalPages}">
+                        <a class="page-link" th:href="@{/posts/{page}(page=${page} - 1 )}" th:text="${page}"></a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">Next</a>
+                    </li>
+                </ul>
+
+            </nav>
         </div>
     </div>
 </div>
